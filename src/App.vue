@@ -2,7 +2,9 @@
   <div id="app">
   	<Top-header></Top-header>
   	<Tab></Tab>
-  	<router-view></router-view>
+  	<keep-alive>
+  		<router-view></router-view>
+  	</keep-alive>
   </div>
 </template>
 
