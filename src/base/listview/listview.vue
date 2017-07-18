@@ -16,18 +16,27 @@
   			<li class="item" :class="{'current':currentIndex === index}" v-for="(item, index) in shortcutList" :data-index="index">{{item}}</li>
   		</ul>
   	</div>
+  	<div class="list-fixed" v-show="fixedTitle" ref="fixed">
+  		<h2 class="fixed-title">{{fixedTitle}}</h2>
+  	</div>
+  	<div class="loading-container" v-show="!data.length">
+  		<loading></loading>
+  	</div>
   </Scroll>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import Scroll from 'base/scroll/scroll'
 	import {getAttr} from 'common/js/dom'
+	import Loading from 'base/loading/loading'
 	
 	const ANCHOR_HEIGHT = 18
+	const TITLE_HEIGHT = 30
 	
   export default {
   	components: {
-  		Scroll
+  		Scroll,
+  		Loading
   	},
     props: {
     	data: {
@@ -38,7 +47,8 @@
     data() {
     	return {
     		scrollY: -1,
-    		currentIndex: 0
+    		currentIndex: 0,
+    		diff: -1
     	}
     },
     created() {
@@ -52,6 +62,10 @@
     		return this.data.map((group) => {
     			return group.title.substr(0, 1)
     		})
+    	},
+    	fixedTitle() {
+    		if(this.scrollY > 0) return ''
+    		return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
     	}
     },
     watch: {
@@ -73,12 +87,18 @@
     			let height2 = listHeight[i + 1]
     			if(!height2 || (-newY >= height1 && -newY < height2)) {
     				this.currentIndex = i
-    				console.log(this.currentIndex)
+    				this.diff = height2 + newY
     				return
     			}
     		}
     		
     		this.currentIndex = listHeight.length - 2
+    	},
+    	diff(newVal) {
+    		let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+    		if(this.fixedTop === fixedTop) return
+    		this.fixedTop = fixedTop
+    		this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
     	}
     },
     methods: {
@@ -92,7 +112,7 @@
     	onShortcutTouchmove(el) {
     		let firstTouch = el.touches[0]
     		this.touch.y2 = firstTouch.pageY
-    		let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT || 0
+    		let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
     		let anchorIndex = parseInt(this.touch.anchorIndex) + delta
     		this._scrollTo(anchorIndex)
     	},
@@ -100,6 +120,14 @@
     		this.scrollY = pos.y
     	},
     	_scrollTo(index) {
+    		if(!index && index !== 0) return
+    		console.log(index)
+    		if(index < 0) {
+    			index = 0
+    		}else if(index > this.listHeight.length - 2) {
+    			index = this.listHeight.length - 2
+    		}
+    		this.scrollY = -this.listHeight[index]
     		this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     	},
     	_calculateHeight() {
