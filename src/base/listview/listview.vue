@@ -4,7 +4,7 @@
   		<li class="list-group" v-for="(group, index) in data" ref="listGroup">
   			<h2 class="list-group-title">{{group.title}}</h2>
   			<ul>
-  				<li class="list-group-item" v-for="(item, index) in group.items">
+  				<li class="list-group-item" v-for="(item, index) in group.items" @click="selectItem(item)">
   					<img class="avatar" v-lazy="item.avatar" />
   					<span class="name">{{item.name}}</span>
   				</li>
@@ -116,8 +116,14 @@
     		let anchorIndex = parseInt(this.touch.anchorIndex) + delta
     		this._scrollTo(anchorIndex)
     	},
+    	selectItem(item) {
+    		this.$emit('select', item)
+    	},
     	scroll(pos) {
     		this.scrollY = pos.y
+    	},
+    	refresh() {
+    		this.$refs.listview.refresh()
     	},
     	_scrollTo(index) {
     		if(!index && index !== 0) return
