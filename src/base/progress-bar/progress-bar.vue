@@ -22,6 +22,11 @@
     		default: 0
     	}
     },
+    computed: {
+    	barWidth() {
+    		return this.$refs.progressBar.clientWidth - progressBtnWidth
+    	}
+    },
     created() {
     	this.touch = {}
     },
@@ -60,10 +65,11 @@
     watch: {
     	percent(newPercent) {
     		if(newPercent >= 0 && !this.touch.initiated) {
-    			const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
-    			const offsetWidth = newPercent * barWidth
+//  			const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
+    			const offsetWidth = newPercent * this.barWidth
     			this._offset(offsetWidth)
     		}
+    		
     	}
     }
   }
