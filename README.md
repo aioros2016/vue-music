@@ -1,21 +1,9 @@
-# vue-music
+# 一个基于Vue所制作的音乐播放器 #
 
-> music app
+## 简介
 
-## Build Setup
+该项目本来是于2017年8月制作完毕并上传至git，也是基于网上一款热门Vue进阶教程来制作的。9月开始由于工作实在太忙，就一直没有机会维护代码。直到最近终于有空开始维护。发现以前很多采集在国内某大型音乐品台的数据接口都已经403了（被服务器禁止访问了）。所以如果clone预览的话，请选择2018.4.24这个分支。
 
-``` bash
-# install dependencies
-npm install
+## 技术栈
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+webpack + vue + axios + better-scroll + jsonp + vue-router + vuex + stylus
