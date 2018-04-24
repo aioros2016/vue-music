@@ -1,24 +1,27 @@
 <template>
-  <div id="app">
-  	<Top-header></Top-header>
-  	<Tab></Tab>
-  	<keep-alive>
-  		<router-view></router-view>
-  	</keep-alive>
-  	<Player></Player>
+  <div id="app" @touchmove.prevent>
+    <m-header></m-header>
+    <tab></tab>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    <player></player>
   </div>
 </template>
 
-<script>
-import TopHeader from 'components/m-header/m-header'
-import Tab from 'components/tab/tab'
-import Player from 'components/player/player'
-export default {
-  name: 'app',
-  components: {
-  	TopHeader,
-  	Tab,
-  	Player
+<script type="text/ecmascript-6">
+  import MHeader from 'components/m-header/m-header'
+  import Player from 'components/player/player'
+  import Tab from 'components/tab/tab'
+
+  export default {
+    components: {
+      MHeader,
+      Tab,
+      Player
+    }
   }
-}
 </script>
+
+<style scoped lang="stylus" rel="stylesheet/stylus">
+</style>
