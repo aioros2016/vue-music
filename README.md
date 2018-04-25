@@ -7,3 +7,19 @@
 ## 技术栈
 
 webpack + vue + axios + better-scroll + jsonp + vue-router + vuex + stylus
+
+## 项目安装
+
+npm install
+
+
+## 本地运行
+
+// 开启服务器，浏览器访问 http://localhost:8080
+npm run dev
+
+
+## 构建生产
+
+// 执行构建命令，生成的dist文件夹放在服务器下即可访问
+npm run build
