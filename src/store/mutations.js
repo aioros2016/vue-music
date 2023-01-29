@@ -1,29 +1,39 @@
-import * as types from './mutation-types'
-
-const matutaions = {
-  [types.SET_SINGER](state, singer) {
-    state.singer = singer
+const mutations = {
+  setPlayingState(state, playing) {
+    state.playing = playing
   },
-  [types.SET_PLAYING_STATE](state, flag) {
-  	state.playing = flag
+  setSequenceList(state, list) {
+    state.sequenceList = list
   },
-  [types.SET_FULL_SCREEN](state, flag) {
-  	state.fullScreen = flag
-  	console.log(state.fullScreen)
+  setPlaylist(state, list) {
+    state.playlist = list
   },
-  [types.SET_PLAYLIST](state, list) {
-  	state.playList = list
-  	console.log(state.playList)
+  setPlayMode(state, mode) {
+    state.playMode = mode
   },
-  [types.SET_SEQUENCELIST](state, list) {
-  	state.sequenceList = list
+  setCurrentIndex(state, index) {
+    state.currentIndex = index
   },
-  [types.SET_PLAY_MODE](state, mode) {
-  	state.mode = mode
+  setFullScreen(state, fullScreen) {
+    state.fullScreen = fullScreen
   },
-  [types.SET_CURRENT_INDEX](state, index) {
-  	state.currentIndex = index
+  setFavoriteList(state, list) {
+    state.favoriteList = list
+  },
+  addSongLyric(state, { song, lyric }) {
+    state.sequenceList.map((item) => {
+      if (item.mid === song.mid) {
+        item.lyric = lyric
+      }
+      return item
+    })
+  },
+  setSearchHistory(state, searches) {
+    state.searchHistory = searches
+  },
+  setPlayHistory(state, songs) {
+    state.playHistory = songs
   }
 }
 
-export default matutaions
+export default mutations
