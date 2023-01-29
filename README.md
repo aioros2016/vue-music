@@ -1,24 +1,27 @@
-# vue-music-next
+# 使用vue3重构音乐App
 
-## Project setup
+## 安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 调试
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 构建
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 构建并部署
 ```
-npm run lint
+npm run deploy
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 主要技术栈
+vue-cli + Vue3 + vuex + axios + express + sass + better-scrol + nginx
+
+### 项目描述
+Vue3也发布一段时间了。前段时间突然想起之前用Vue2做了音乐App项目，已经许久没有维护了。遂决定用这次新发布的Vue3对这个项目做一次重构。由于只能使用业余时间来做这部分工作，所以开发周期也比较长。下面来说说开发主要用到的技术栈。前端框架肯定是用Vue3，全局状态就用了Vuex来管理。通讯层选择了主流的axios。服务层则使用了express来代理XX音乐的所以业务接口。由于XX音乐业务接口入参非常复杂且缺乏语义化(猜测是因为防盗链的原因，同时也感谢国内某位大佬提供的XX音乐业务接口逻辑)。所以本次使用express来封装所有接口的业务逻辑，对外只暴露了类似于pageSize和pageNum这样简单的入参。对于前端业务开发来说，请求逻辑就变得没有障碍了。最后将代码部署至自己的服务器上，并使用nginx做了反向代理，并实现了https化。期间虽然也踩了不少坑，不过对自己而言也是受益良多。最后，感谢一路走来曾经帮助过我的人们，让我始终保持对于技术的热爱。
