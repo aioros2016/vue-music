@@ -2,7 +2,6 @@ const express = require('express')
 const compression = require('compression')
 const cookieParser = require('cookie-parser')
 const csrf = require('xsrf')
-const cors = require('cors')
 const router = require('./router')
 
 const port = process.env.PORT || 3001
@@ -12,9 +11,8 @@ const app = express()
 const csrfProtection = csrf({
   cookie: true,
   ignoreMethods: ['HEAD', 'OPTIONS'],
-  checkPathReg: /^\/music\/api/
+  checkPathReg: /^\/api/
 })
-app.use(cors())
 app.use(cookieParser())
 app.use(csrfProtection)
 app.use('/', router)
