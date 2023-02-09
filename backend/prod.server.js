@@ -15,7 +15,7 @@ const csrfProtection = csrf({
 })
 app.use(cookieParser())
 app.use(csrfProtection)
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'development') {
   app.use('/', router)
 }
 
