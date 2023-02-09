@@ -15,7 +15,9 @@ const csrfProtection = csrf({
 })
 app.use(cookieParser())
 app.use(csrfProtection)
-app.use('/', router)
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', router)
+}
 
 app.get('/', function (req, res, next) {
   res.cookie('XSRF-TOKEN', req.csrfToken())
