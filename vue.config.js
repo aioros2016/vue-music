@@ -24,6 +24,12 @@ module.exports = {
       config.plugins.push(new BundleAnalyzerPlugin())
     }
   },
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      args[0].title = '听歌吧'
+      return args
+    })
+  },
   productionSourceMap: false,
-  publicPath: process.env.NODE_ENV === 'production' ? '/music/' : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/'
 }

@@ -10,6 +10,7 @@ export const getSingerList = rest.get('/api/getSingerList', (req, res, ctx) => {
   return res(
     // Respond with a 200 status code
     ctx.status(200),
+    ctx.delay(2000),
     ctx.json({
       code: 0,
       result: {

@@ -32,11 +32,11 @@
     .no-result-content {
       text-align: center;
       .icon {
-        width: 86px;
+        width: 113px;
         height: 90px;
         margin: 0 auto;
         @include bg-image('no-result');
-        background-size: 86px 90px;
+        background-size: 113px 90px;
       }
       .text {
         margin-top: 30px;

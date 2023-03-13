@@ -10,6 +10,7 @@ import { rest } from 'msw'
 export const getRecommend = rest.get('/api/getRecommend', (req, res, ctx) => {
   return res(
     ctx.status(200),
+    ctx.delay(2000),
     ctx.json({
       code: 0,
       result: {
